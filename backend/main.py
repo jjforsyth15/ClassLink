@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from routers.health import router as health_router
 app = FastAPI()
 
 app.add_middleware(
@@ -18,3 +18,5 @@ def health():
 @app.get("/api/hello")
 def hello():
     return {"message": "Hello, World!"}
+
+app.include_router(health_router, prefix="/api/v1")
