@@ -7,10 +7,22 @@ export function useAuth() {
     const [status, setStatus] = useState<AuthStatus>('loading');
 
     useEffect(() => {
+        let cancelled = false;
+
         (async () => {
-            const token = await getToken();
-            setStatus(token ? 'signed_in' : 'signed_out');
+            try {
+                const token = await getToken();
+                if (!cancelled)
+                    setStatus(token ? 'signed_in' : 'signed_out');
+            } catch (error) {
+                if (!cancelled)
+                    setStatus('signed_out');
+            }
         })();
+
+        return () => {
+            cancelled = true;
+        };
     }, []);
 
     return { status };
