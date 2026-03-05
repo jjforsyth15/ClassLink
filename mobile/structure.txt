@@ -1,0 +1,59 @@
+mobile/
+  app/
+    _layout.tsx              # root stack (auth vs tabs)
+    (auth)/
+      _layout.tsx            # auth stack
+      login.tsx
+      register.tsx
+      forgot-password.tsx
+
+    (tabs)/
+      _layout.tsx            # bottom tabs
+      home.tsx
+      classes/
+        _layout.tsx          # stack inside Classes tab
+        index.tsx            # classes list
+        [classId].tsx        # class detail
+      profile/
+        index.tsx
+        edit.tsx
+
+  src/
+    components/
+      ui/                    # truly generic UI
+        Button.tsx
+        TextField.tsx
+      common/                # shared app components
+        Screen.tsx
+        Header.tsx
+
+    features/
+      auth/
+        api.ts
+        types.ts
+        hooks.ts
+        storage.ts           # token save/load
+      classes/
+        api.ts
+        types.ts
+        hooks.ts
+      profile/
+        api.ts
+        types.ts
+        hooks.ts
+
+    lib/
+      api/
+        client.ts            # fetch wrapper
+        routes.ts            # endpoints
+      config/
+        env.ts               # base URL, etc.
+      utils/
+        formatters.ts
+        validators.ts
+
+    constants/
+      Colors.ts
+      Spacing.ts
+
+    assets/                  # (optional) keep in root too
